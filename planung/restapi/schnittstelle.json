@@ -1,0 +1,443 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\n_If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "3.1.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://petstore3.swagger.io/api/v3"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Wecker Configuration",
+      "description": "Everything about the Configuration of your Alarm Clock"
+    },
+    {
+      "name": "WaveSensor",
+      "description": "Access to WaveSensor data"
+    }
+  ],
+  "paths": {
+    "/api/v1/wecker/configurations/": {
+      "get": {
+        "tags": [
+          "Wecker Configuration"
+        ],
+        "summary": "Get all Wecker Configurations",
+        "description": "Get all Wecker Configurations",
+        "operationId": "getConfigurations",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Configuration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Wecker Configuration"
+        ],
+        "summary": "Add Configuration with ID",
+        "description": "Add Configuration with ID",
+        "operationId": "addConfiguration",
+        "requestBody": {
+          "description": "Add Configuration",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Configuration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Configuration not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/v1/wecker/configurations/{configurationId}": {
+      "get": {
+        "tags": [
+          "Wecker Configuration"
+        ],
+        "summary": "Get all Wecker Configurations",
+        "description": "Get all Wecker Configurations",
+        "operationId": "getConfigurations",
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "description": "ID of Configuration",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Configuration not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Wecker Configuration"
+        ],
+        "summary": "Update Configuration with ID",
+        "description": "Update Configuration with ID",
+        "operationId": "updateConfiguration",
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "description": "ID of Configuration",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent Configuration",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Configuration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Configuration not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Wecker Configuration"
+        ],
+        "summary": "Delete Configuration with ID",
+        "description": "Delete Configuration with ID",
+        "operationId": "deleteConfiguration",
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "description": "ID of Configuration",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Configuration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Configuration not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/v1/wecker/sensor/presence/logs": {
+      "get": {
+        "tags": [
+          "WaveSensor"
+        ],
+        "summary": "Get all Sensor presence Logs",
+        "description": "Get all Sensor presence Logs",
+        "operationId": "getPresenceLogs",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PresenceLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WaveSensor"
+        ],
+        "summary": "Add Sensor Presence Log entry",
+        "description": "Add Sensor Presence Log entry",
+        "operationId": "addPresenceLog",
+        "requestBody": {
+          "description": "Sensor Presence Log Entry",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresenceLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresenceLog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Sensor Presence Log not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/api/v1/wecker/sensor/presence/logs/{logId}": {
+      "get": {
+        "tags": [
+          "WaveSensor"
+        ],
+        "summary": "Get Sensor Presence Log by ID",
+        "description": "Get Sensor Presence Log by ID",
+        "operationId": "getPresenceLogById",
+        "parameters": [
+          {
+            "name": "logId",
+            "in": "path",
+            "description": "ID of Log",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresenceLog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Sensor Presence Log not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Day": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "bezeichnung": {
+            "type": "string",
+            "example": "Donnerstag"
+          },
+          "aktiv": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "Configuration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "uhrzeit": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "maxDauer": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "aktiv": {
+            "type": "boolean",
+            "example": true
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Day"
+            }
+          }
+        }
+      },
+      "PresenceLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": "10"
+          },
+          "areaId": {
+            "type": "integer",
+            "format": "int64",
+            "example": "10"
+          },
+          "statusId": {
+            "type": "integer",
+            "format": "int64",
+            "example": "10"
+          },
+          "zeitpunkt": {
+            "type": "integer",
+            "format": "int64",
+            "example": "10"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      }
+    },
+    "requestBodies": {
+
+    }
+  }
+}
+
