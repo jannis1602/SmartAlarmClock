@@ -17,8 +17,12 @@
       "description": "Everything about the Configuration of your Alarm Clock"
     },
     {
-      "name": "WaveSensor",
-      "description": "Access to WaveSensor data"
+      "name": "Area",
+      "description": "Access to Area data"
+    },
+    {
+      "name": "Status",
+      "description": "Access to Status data"
     }
   ],
   "paths": {
@@ -327,11 +331,349 @@
           }
         }
       }
+    },
+    "/wecker/areas/": {
+      "get": {
+        "tags": [
+          "Area"
+        ],
+        "summary": "Get all Areas",
+        "description": "Get all Areas",
+        "operationId": "getAllAreas",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Area"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Area"
+        ],
+        "summary": "Add Area with ID",
+        "description": "Add Area with ID",
+        "operationId": "addArea",
+        "requestBody": {
+          "description": "Add Area",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Area"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/wecker/areas/{areaId}": {
+      "get": {
+        "tags": [
+          "Area"
+        ],
+        "summary": "Get Area via ID",
+        "description": "Get Area via ID",
+        "operationId": "getAreaById",
+        "parameters": [
+          {
+            "name": "areaId",
+            "in": "path",
+            "description": "ID of Area",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Area"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Area not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Area"
+        ],
+        "summary": "Update Area with ID",
+        "description": "Update Area with ID",
+        "operationId": "updateAreaViaId",
+        "parameters": [
+          {
+            "name": "areaId",
+            "in": "path",
+            "description": "ID of Area",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent Area",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Area"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Area"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Area not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/wecker/stati/": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Get all Statis",
+        "description": "Get all Statis",
+        "operationId": "getAllStatis",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Status"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Add Status with ID",
+        "description": "Add Status with ID",
+        "operationId": "addStatus",
+        "requestBody": {
+          "description": "Add Status",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Status"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/wecker/stati/{statusId}": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Get Status via ID",
+        "description": "Get Status via ID",
+        "operationId": "getStatusViaId",
+        "parameters": [
+          {
+            "name": "statusId",
+            "in": "path",
+            "description": "ID of Status",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Status not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Update Status with ID",
+        "description": "Update Status with ID",
+        "operationId": "updateStatusViaId",
+        "parameters": [
+          {
+            "name": "statusId",
+            "in": "path",
+            "description": "ID of Status",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent Status",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Status"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Status not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "Area": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "bezeichnung": {
+            "type": "string",
+            "example": "Bett"
+          }
+        }
+      },
+      "Status": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": "123"
+          },
+          "bezeichnung": {
+            "type": "string",
+            "example": "Mensch Anwesend"
+          }
+        }
+      },
       "Day": {
         "type": "object",
         "properties": {
