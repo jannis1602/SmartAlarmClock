@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 @Validated
 @Tag(name = "Area", description = "Access to Area data")
 public interface AreaApi {
@@ -76,7 +76,7 @@ public interface AreaApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"bezeichnung\" : \"Bett\", \"id\" : 123 }";
+                    String exampleString = "{ \"name\" : \"Bett\", \"id\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -116,7 +116,7 @@ public interface AreaApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"bezeichnung\" : \"Bett\", \"id\" : 123 }, { \"bezeichnung\" : \"Bett\", \"id\" : 123 } ]";
+                    String exampleString = "[ { \"name\" : \"Bett\", \"id\" : 123 }, { \"name\" : \"Bett\", \"id\" : 123 } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -163,7 +163,7 @@ public interface AreaApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"bezeichnung\" : \"Bett\", \"id\" : 123 }";
+                    String exampleString = "{ \"name\" : \"Bett\", \"id\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -213,7 +213,7 @@ public interface AreaApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"bezeichnung\" : \"Bett\", \"id\" : 123 }";
+                    String exampleString = "{ \"name\" : \"Bett\", \"id\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

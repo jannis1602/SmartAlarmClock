@@ -18,12 +18,12 @@ import javax.annotation.Generated;
  * Area
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class Area {
 
   private Long id;
 
-  private String bezeichnung;
+  private String name;
 
   public Area id(Long id) {
     this.id = id;
@@ -45,24 +45,24 @@ public class Area {
     this.id = id;
   }
 
-  public Area bezeichnung(String bezeichnung) {
-    this.bezeichnung = bezeichnung;
+  public Area name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get bezeichnung
-   * @return bezeichnung
+   * Get name
+   * @return name
   */
   
-  @Schema(name = "bezeichnung", example = "Bett", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("bezeichnung")
-  public String getBezeichnung() {
-    return bezeichnung;
+  @Schema(name = "name", example = "Bett", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
+  public String getName() {
+    return name;
   }
 
-  public void setBezeichnung(String bezeichnung) {
-    this.bezeichnung = bezeichnung;
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override
@@ -75,12 +75,12 @@ public class Area {
     }
     Area area = (Area) o;
     return Objects.equals(this.id, area.id) &&
-        Objects.equals(this.bezeichnung, area.bezeichnung);
+        Objects.equals(this.name, area.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, bezeichnung);
+    return Objects.hash(id, name);
   }
 
   @Override
@@ -88,7 +88,7 @@ public class Area {
     StringBuilder sb = new StringBuilder();
     sb.append("class Area {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    bezeichnung: ").append(toIndentedString(bezeichnung)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

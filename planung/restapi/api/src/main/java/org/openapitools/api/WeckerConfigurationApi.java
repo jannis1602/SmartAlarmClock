@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 @Validated
 @Tag(name = "Wecker Configuration", description = "Everything about the Configuration of your Alarm Clock")
 public interface WeckerConfigurationApi {
@@ -78,7 +78,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -125,7 +125,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -165,7 +165,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 }, { \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 } ]";
+                    String exampleString = "[ { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }, { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -212,7 +212,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -262,7 +262,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"uhrzeit\" : 123, \"days\" : [ { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true }, { \"bezeichnung\" : \"Donnerstag\", \"id\" : 123, \"aktiv\" : true } ], \"id\" : 123, \"aktiv\" : true, \"maxDauer\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -654,7 +654,7 @@
             "format": "int64",
             "example": "123"
           },
-          "bezeichnung": {
+          "name": {
             "type": "string",
             "example": "Bett"
           }
@@ -668,7 +668,7 @@
             "format": "int64",
             "example": "123"
           },
-          "bezeichnung": {
+          "name": {
             "type": "string",
             "example": "Mensch Anwesend"
           }
@@ -682,11 +682,11 @@
             "format": "int64",
             "example": "123"
           },
-          "bezeichnung": {
+          "name": {
             "type": "string",
             "example": "Donnerstag"
           },
-          "aktiv": {
+          "active": {
             "type": "boolean",
             "example": true
           }
@@ -700,17 +700,17 @@
             "format": "int64",
             "example": "123"
           },
-          "uhrzeit": {
+          "timestamp": {
             "type": "integer",
             "format": "int64",
             "example": "123"
           },
-          "maxDauer": {
+          "maxDuration": {
             "type": "integer",
             "format": "int64",
             "example": "123"
           },
-          "aktiv": {
+          "active": {
             "type": "boolean",
             "example": true
           },
@@ -740,7 +740,7 @@
             "format": "int64",
             "example": "10"
           },
-          "zeitpunkt": {
+          "timestamp": {
             "type": "integer",
             "format": "int64",
             "example": "10"

@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 @Validated
 @Tag(name = "WaveSensor", description = "the WaveSensor API")
 public interface WaveSensorApi {
@@ -78,7 +78,7 @@ public interface WaveSensorApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"areaId\" : 10, \"statusId\" : 10, \"zeitpunkt\" : 10, \"id\" : 10 }";
+                    String exampleString = "{ \"areaId\" : 10, \"statusId\" : 10, \"id\" : 10, \"timestamp\" : 10 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -125,7 +125,7 @@ public interface WaveSensorApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"areaId\" : 10, \"statusId\" : 10, \"zeitpunkt\" : 10, \"id\" : 10 }";
+                    String exampleString = "{ \"areaId\" : 10, \"statusId\" : 10, \"id\" : 10, \"timestamp\" : 10 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -165,7 +165,7 @@ public interface WaveSensorApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"areaId\" : 10, \"statusId\" : 10, \"zeitpunkt\" : 10, \"id\" : 10 }, { \"areaId\" : 10, \"statusId\" : 10, \"zeitpunkt\" : 10, \"id\" : 10 } ]";
+                    String exampleString = "[ { \"areaId\" : 10, \"statusId\" : 10, \"id\" : 10, \"timestamp\" : 10 }, { \"areaId\" : 10, \"statusId\" : 10, \"id\" : 10, \"timestamp\" : 10 } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

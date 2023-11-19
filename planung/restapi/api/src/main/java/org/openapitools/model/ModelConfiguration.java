@@ -24,16 +24,16 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("Configuration")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class ModelConfiguration {
 
   private Long id;
 
-  private Long uhrzeit;
+  private Long timestamp;
 
-  private Long maxDauer;
+  private Long maxDuration;
 
-  private Boolean aktiv;
+  private Boolean active;
 
   @Valid
   private List<@Valid Day> days;
@@ -58,64 +58,64 @@ public class ModelConfiguration {
     this.id = id;
   }
 
-  public ModelConfiguration uhrzeit(Long uhrzeit) {
-    this.uhrzeit = uhrzeit;
+  public ModelConfiguration timestamp(Long timestamp) {
+    this.timestamp = timestamp;
     return this;
   }
 
   /**
-   * Get uhrzeit
-   * @return uhrzeit
+   * Get timestamp
+   * @return timestamp
   */
   
-  @Schema(name = "uhrzeit", example = "123", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("uhrzeit")
-  public Long getUhrzeit() {
-    return uhrzeit;
+  @Schema(name = "timestamp", example = "123", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("timestamp")
+  public Long getTimestamp() {
+    return timestamp;
   }
 
-  public void setUhrzeit(Long uhrzeit) {
-    this.uhrzeit = uhrzeit;
+  public void setTimestamp(Long timestamp) {
+    this.timestamp = timestamp;
   }
 
-  public ModelConfiguration maxDauer(Long maxDauer) {
-    this.maxDauer = maxDauer;
+  public ModelConfiguration maxDuration(Long maxDuration) {
+    this.maxDuration = maxDuration;
     return this;
   }
 
   /**
-   * Get maxDauer
-   * @return maxDauer
+   * Get maxDuration
+   * @return maxDuration
   */
   
-  @Schema(name = "maxDauer", example = "123", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("maxDauer")
-  public Long getMaxDauer() {
-    return maxDauer;
+  @Schema(name = "maxDuration", example = "123", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("maxDuration")
+  public Long getMaxDuration() {
+    return maxDuration;
   }
 
-  public void setMaxDauer(Long maxDauer) {
-    this.maxDauer = maxDauer;
+  public void setMaxDuration(Long maxDuration) {
+    this.maxDuration = maxDuration;
   }
 
-  public ModelConfiguration aktiv(Boolean aktiv) {
-    this.aktiv = aktiv;
+  public ModelConfiguration active(Boolean active) {
+    this.active = active;
     return this;
   }
 
   /**
-   * Get aktiv
-   * @return aktiv
+   * Get active
+   * @return active
   */
   
-  @Schema(name = "aktiv", example = "true", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("aktiv")
-  public Boolean getAktiv() {
-    return aktiv;
+  @Schema(name = "active", example = "true", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("active")
+  public Boolean getActive() {
+    return active;
   }
 
-  public void setAktiv(Boolean aktiv) {
-    this.aktiv = aktiv;
+  public void setActive(Boolean active) {
+    this.active = active;
   }
 
   public ModelConfiguration days(List<@Valid Day> days) {
@@ -156,15 +156,15 @@ public class ModelConfiguration {
     }
     ModelConfiguration _configuration = (ModelConfiguration) o;
     return Objects.equals(this.id, _configuration.id) &&
-        Objects.equals(this.uhrzeit, _configuration.uhrzeit) &&
-        Objects.equals(this.maxDauer, _configuration.maxDauer) &&
-        Objects.equals(this.aktiv, _configuration.aktiv) &&
+        Objects.equals(this.timestamp, _configuration.timestamp) &&
+        Objects.equals(this.maxDuration, _configuration.maxDuration) &&
+        Objects.equals(this.active, _configuration.active) &&
         Objects.equals(this.days, _configuration.days);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, uhrzeit, maxDauer, aktiv, days);
+    return Objects.hash(id, timestamp, maxDuration, active, days);
   }
 
   @Override
@@ -172,9 +172,9 @@ public class ModelConfiguration {
     StringBuilder sb = new StringBuilder();
     sb.append("class ModelConfiguration {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    uhrzeit: ").append(toIndentedString(uhrzeit)).append("\n");
-    sb.append("    maxDauer: ").append(toIndentedString(maxDauer)).append("\n");
-    sb.append("    aktiv: ").append(toIndentedString(aktiv)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
+    sb.append("    maxDuration: ").append(toIndentedString(maxDuration)).append("\n");
+    sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    days: ").append(toIndentedString(days)).append("\n");
     sb.append("}");
     return sb.toString();

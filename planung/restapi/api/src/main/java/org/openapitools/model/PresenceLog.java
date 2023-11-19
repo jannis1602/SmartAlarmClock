@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * PresenceLog
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class PresenceLog {
 
   private Long id;
@@ -27,7 +27,7 @@ public class PresenceLog {
 
   private Long statusId;
 
-  private Long zeitpunkt;
+  private Long timestamp;
 
   public PresenceLog id(Long id) {
     this.id = id;
@@ -89,24 +89,24 @@ public class PresenceLog {
     this.statusId = statusId;
   }
 
-  public PresenceLog zeitpunkt(Long zeitpunkt) {
-    this.zeitpunkt = zeitpunkt;
+  public PresenceLog timestamp(Long timestamp) {
+    this.timestamp = timestamp;
     return this;
   }
 
   /**
-   * Get zeitpunkt
-   * @return zeitpunkt
+   * Get timestamp
+   * @return timestamp
   */
   
-  @Schema(name = "zeitpunkt", example = "10", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("zeitpunkt")
-  public Long getZeitpunkt() {
-    return zeitpunkt;
+  @Schema(name = "timestamp", example = "10", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("timestamp")
+  public Long getTimestamp() {
+    return timestamp;
   }
 
-  public void setZeitpunkt(Long zeitpunkt) {
-    this.zeitpunkt = zeitpunkt;
+  public void setTimestamp(Long timestamp) {
+    this.timestamp = timestamp;
   }
 
   @Override
@@ -121,12 +121,12 @@ public class PresenceLog {
     return Objects.equals(this.id, presenceLog.id) &&
         Objects.equals(this.areaId, presenceLog.areaId) &&
         Objects.equals(this.statusId, presenceLog.statusId) &&
-        Objects.equals(this.zeitpunkt, presenceLog.zeitpunkt);
+        Objects.equals(this.timestamp, presenceLog.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, areaId, statusId, zeitpunkt);
+    return Objects.hash(id, areaId, statusId, timestamp);
   }
 
   @Override
@@ -136,7 +136,7 @@ public class PresenceLog {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    areaId: ").append(toIndentedString(areaId)).append("\n");
     sb.append("    statusId: ").append(toIndentedString(statusId)).append("\n");
-    sb.append("    zeitpunkt: ").append(toIndentedString(zeitpunkt)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

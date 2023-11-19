@@ -18,14 +18,14 @@ import javax.annotation.Generated;
  * Day
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T13:55:28.185521900+01:00[Europe/Berlin]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class Day {
 
   private Long id;
 
-  private String bezeichnung;
+  private String name;
 
-  private Boolean aktiv;
+  private Boolean active;
 
   public Day id(Long id) {
     this.id = id;
@@ -47,44 +47,44 @@ public class Day {
     this.id = id;
   }
 
-  public Day bezeichnung(String bezeichnung) {
-    this.bezeichnung = bezeichnung;
+  public Day name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get bezeichnung
-   * @return bezeichnung
+   * Get name
+   * @return name
   */
   
-  @Schema(name = "bezeichnung", example = "Donnerstag", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("bezeichnung")
-  public String getBezeichnung() {
-    return bezeichnung;
+  @Schema(name = "name", example = "Donnerstag", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
+  public String getName() {
+    return name;
   }
 
-  public void setBezeichnung(String bezeichnung) {
-    this.bezeichnung = bezeichnung;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public Day aktiv(Boolean aktiv) {
-    this.aktiv = aktiv;
+  public Day active(Boolean active) {
+    this.active = active;
     return this;
   }
 
   /**
-   * Get aktiv
-   * @return aktiv
+   * Get active
+   * @return active
   */
   
-  @Schema(name = "aktiv", example = "true", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("aktiv")
-  public Boolean getAktiv() {
-    return aktiv;
+  @Schema(name = "active", example = "true", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("active")
+  public Boolean getActive() {
+    return active;
   }
 
-  public void setAktiv(Boolean aktiv) {
-    this.aktiv = aktiv;
+  public void setActive(Boolean active) {
+    this.active = active;
   }
 
   @Override
@@ -97,13 +97,13 @@ public class Day {
     }
     Day day = (Day) o;
     return Objects.equals(this.id, day.id) &&
-        Objects.equals(this.bezeichnung, day.bezeichnung) &&
-        Objects.equals(this.aktiv, day.aktiv);
+        Objects.equals(this.name, day.name) &&
+        Objects.equals(this.active, day.active);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, bezeichnung, aktiv);
+    return Objects.hash(id, name, active);
   }
 
   @Override
@@ -111,8 +111,8 @@ public class Day {
     StringBuilder sb = new StringBuilder();
     sb.append("class Day {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    bezeichnung: ").append(toIndentedString(bezeichnung)).append("\n");
-    sb.append("    aktiv: ").append(toIndentedString(aktiv)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("}");
     return sb.toString();
   }
