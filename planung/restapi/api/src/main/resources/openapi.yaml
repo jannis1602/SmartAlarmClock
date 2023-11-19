@@ -1,0 +1,589 @@
+openapi: 3.0.3
+info:
+  description: Dies ist eine Schnittstellenbeschreibung für die Wecker-REST-API
+  termsOfService: http://swagger.io/terms/
+  title: Wecker Rest API - OpenAPI 3.0
+  version: 3.1.0
+servers:
+- url: localhost/api/v1
+tags:
+- description: Everything about the Configuration of your Alarm Clock
+  name: Wecker Configuration
+- description: Access to Area data
+  name: Area
+- description: Access to Status data
+  name: Status
+paths:
+  /wecker/configurations/:
+    get:
+      description: Get all Wecker Configurations
+      operationId: getAllConfigurations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Configuration'
+                type: array
+          description: Successful operation
+      summary: Get all Wecker Configurations
+      tags:
+      - Wecker Configuration
+      x-accepts: application/json
+      x-tags:
+      - tag: Wecker Configuration
+    post:
+      description: Add Configuration with ID
+      operationId: addConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Configuration'
+        description: Add Configuration
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Configuration not found
+        "405":
+          description: Validation exception
+      summary: Add Configuration with ID
+      tags:
+      - Wecker Configuration
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Wecker Configuration
+  /wecker/configurations/{configurationId}:
+    delete:
+      description: Delete Configuration with ID
+      operationId: deleteConfiguration
+      parameters:
+      - description: ID of Configuration
+        explode: false
+        in: path
+        name: configurationId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Configuration not found
+        "405":
+          description: Validation exception
+      summary: Delete Configuration with ID
+      tags:
+      - Wecker Configuration
+      x-accepts: application/json
+      x-tags:
+      - tag: Wecker Configuration
+    get:
+      description: Get all Wecker Configurations
+      operationId: getConfigurations
+      parameters:
+      - description: ID of Configuration
+        explode: false
+        in: path
+        name: configurationId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Configuration not found
+        "405":
+          description: Validation exception
+      summary: Get all Wecker Configurations
+      tags:
+      - Wecker Configuration
+      x-accepts: application/json
+      x-tags:
+      - tag: Wecker Configuration
+    put:
+      description: Update Configuration with ID
+      operationId: updateConfiguration
+      parameters:
+      - description: ID of Configuration
+        explode: false
+        in: path
+        name: configurationId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Configuration'
+        description: Update an existent Configuration
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Configuration not found
+        "405":
+          description: Validation exception
+      summary: Update Configuration with ID
+      tags:
+      - Wecker Configuration
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Wecker Configuration
+  /wecker/sensor/presence/logs:
+    get:
+      description: Get all Sensor presence Logs
+      operationId: getPresenceLogs
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PresenceLog'
+                type: array
+          description: Successful operation
+      summary: Get all Sensor presence Logs
+      tags:
+      - WaveSensor
+      x-accepts: application/json
+      x-tags:
+      - tag: WaveSensor
+    post:
+      description: Add Sensor Presence Log entry
+      operationId: addPresenceLog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PresenceLog'
+        description: Sensor Presence Log Entry
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceLog'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Sensor Presence Log not found
+        "405":
+          description: Validation exception
+      summary: Add Sensor Presence Log entry
+      tags:
+      - WaveSensor
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: WaveSensor
+  /wecker/sensor/presence/logs/{logId}:
+    get:
+      description: Get Sensor Presence Log by ID
+      operationId: getPresenceLogById
+      parameters:
+      - description: ID of Log
+        explode: false
+        in: path
+        name: logId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceLog'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Sensor Presence Log not found
+        "405":
+          description: Validation exception
+      summary: Get Sensor Presence Log by ID
+      tags:
+      - WaveSensor
+      x-accepts: application/json
+      x-tags:
+      - tag: WaveSensor
+  /wecker/areas/:
+    get:
+      description: Get all Areas
+      operationId: getAllAreas
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Area'
+                type: array
+          description: Successful operation
+      summary: Get all Areas
+      tags:
+      - Area
+      x-accepts: application/json
+      x-tags:
+      - tag: Area
+    post:
+      description: Add Area with ID
+      operationId: addArea
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Area'
+        description: Add Area
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Area'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "405":
+          description: Validation exception
+      summary: Add Area with ID
+      tags:
+      - Area
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Area
+  /wecker/areas/{areaId}:
+    get:
+      description: Get Area via ID
+      operationId: getAreaById
+      parameters:
+      - description: ID of Area
+        explode: false
+        in: path
+        name: areaId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Area'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Area not found
+        "405":
+          description: Validation exception
+      summary: Get Area via ID
+      tags:
+      - Area
+      x-accepts: application/json
+      x-tags:
+      - tag: Area
+    put:
+      description: Update Area with ID
+      operationId: updateAreaViaId
+      parameters:
+      - description: ID of Area
+        explode: false
+        in: path
+        name: areaId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Area'
+        description: Update an existent Area
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Area'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Area not found
+        "405":
+          description: Validation exception
+      summary: Update Area with ID
+      tags:
+      - Area
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Area
+  /wecker/stati/:
+    get:
+      description: Get all Statis
+      operationId: getAllStatis
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Status'
+                type: array
+          description: Successful operation
+      summary: Get all Statis
+      tags:
+      - Status
+      x-accepts: application/json
+      x-tags:
+      - tag: Status
+    post:
+      description: Add Status with ID
+      operationId: addStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+        description: Add Status
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "405":
+          description: Validation exception
+      summary: Add Status with ID
+      tags:
+      - Status
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Status
+  /wecker/stati/{statusId}:
+    get:
+      description: Get Status via ID
+      operationId: getStatusViaId
+      parameters:
+      - description: ID of Status
+        explode: false
+        in: path
+        name: statusId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Status not found
+        "405":
+          description: Validation exception
+      summary: Get Status via ID
+      tags:
+      - Status
+      x-accepts: application/json
+      x-tags:
+      - tag: Status
+    put:
+      description: Update Status with ID
+      operationId: updateStatusViaId
+      parameters:
+      - description: ID of Status
+        explode: false
+        in: path
+        name: statusId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
+        description: Update an existent Status
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Status not found
+        "405":
+          description: Validation exception
+      summary: Update Status with ID
+      tags:
+      - Status
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Status
+components:
+  requestBodies: {}
+  schemas:
+    Area:
+      example:
+        bezeichnung: Bett
+        id: 123
+      properties:
+        id:
+          example: 123
+          format: int64
+          type: integer
+        bezeichnung:
+          example: Bett
+          type: string
+      type: object
+    Status:
+      example:
+        bezeichnung: Mensch Anwesend
+        id: 123
+      properties:
+        id:
+          example: 123
+          format: int64
+          type: integer
+        bezeichnung:
+          example: Mensch Anwesend
+          type: string
+      type: object
+    Day:
+      example:
+        bezeichnung: Donnerstag
+        id: 123
+        aktiv: true
+      properties:
+        id:
+          example: 123
+          format: int64
+          type: integer
+        bezeichnung:
+          example: Donnerstag
+          type: string
+        aktiv:
+          example: true
+          type: boolean
+      type: object
+    Configuration:
+      example:
+        uhrzeit: 123
+        days:
+        - bezeichnung: Donnerstag
+          id: 123
+          aktiv: true
+        - bezeichnung: Donnerstag
+          id: 123
+          aktiv: true
+        id: 123
+        aktiv: true
+        maxDauer: 123
+      properties:
+        id:
+          example: 123
+          format: int64
+          type: integer
+        uhrzeit:
+          example: 123
+          format: int64
+          type: integer
+        maxDauer:
+          example: 123
+          format: int64
+          type: integer
+        aktiv:
+          example: true
+          type: boolean
+        days:
+          items:
+            $ref: '#/components/schemas/Day'
+          type: array
+      type: object
+    PresenceLog:
+      example:
+        areaId: 10
+        statusId: 10
+        zeitpunkt: 10
+        id: 10
+      properties:
+        id:
+          example: 10
+          format: int64
+          type: integer
+        areaId:
+          example: 10
+          format: int64
+          type: integer
+        statusId:
+          example: 10
+          format: int64
+          type: integer
+        zeitpunkt:
+          example: 10
+          format: int64
+          type: integer
+      type: object

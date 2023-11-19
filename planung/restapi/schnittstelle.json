@@ -8,7 +8,7 @@
   },
   "servers": [
     {
-      "url": "https://wecker.de/api/v1"
+      "url": "localhost/api/v1"
     }
   ],
   "tags": [
