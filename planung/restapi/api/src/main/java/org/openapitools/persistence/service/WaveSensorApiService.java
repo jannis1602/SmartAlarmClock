@@ -1,4 +1,4 @@
-package org.openapitools.persistence;
+package org.openapitools.persistence.service;
 
 import org.openapitools.model.PresenceLog;
 import org.springframework.stereotype.Component;

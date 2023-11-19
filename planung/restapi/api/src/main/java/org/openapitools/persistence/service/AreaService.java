@@ -1,6 +1,7 @@
-package org.openapitools.persistence;
+package org.openapitools.persistence.service;
 
 import org.openapitools.model.Area;
+import org.openapitools.persistence.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,8 @@ public class AreaService {
     }
 
     public List<Area> getAllAreas() throws IOException {
-        databaseService.getConnection();
-        return null;
+        return databaseService.query(Area.FIND_ALL, Area.class)
+                .getResultList();
     }
 
     public Area getAreaById(Long areaId) throws IOException {

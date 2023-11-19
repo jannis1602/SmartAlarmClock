@@ -1,7 +1,7 @@
 package org.openapitools.api;
 
 import org.openapitools.model.ModelConfiguration;
-import org.openapitools.persistence.WeckerConfigurationApiService;
+import org.openapitools.persistence.service.WeckerConfigurationApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
