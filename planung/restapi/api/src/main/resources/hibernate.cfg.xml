@@ -1,0 +1,18 @@
+<hibernate-configuration>
+    <session-factory>
+
+
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:C:\Users\g065715\Documents\Schule\Projekte\Wecker\SmartAlarmClock\planung\db\wecker.db</property>
+        <property name="hibernate.dialect">org.sqlite.hibernate.dialect.SQLiteDialect</property>
+
+        <!-- Other Hibernate properties -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Other configuration properties -->
+
+        <!-- Package containing your entity classes -->
+        <mapping class="org.openapitools.model.Area"/>
+    </session-factory>
+</hibernate-configuration>
