@@ -16,7 +16,8 @@ public class AreaService {
     private DatabaseService databaseService;
 
     public Area persistArea(Area area) throws IOException {
-        return null;
+        databaseService.persist(area);
+        return area;
     }
 
     public List<Area> getAllAreas() throws IOException {
@@ -25,10 +26,11 @@ public class AreaService {
     }
 
     public Area getAreaById(Long areaId) throws IOException {
-        return null;
+        return databaseService.find(Area.class, areaId);
     }
 
     public Area updateArea(Long areaId, Area area) throws IOException{
-        return null;
+        databaseService.merge(area);
+        return area;
     }
 }
