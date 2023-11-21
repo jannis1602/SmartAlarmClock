@@ -34,7 +34,6 @@ SOMEONE_CLOSE = 0x07       #Someone approaches
 SOMEONE_AWAY  = 0x08       #Some people stay away
 DETAILMESSAGE = 0x09       #Underlying parameters of the human state
 
-
 # Existence energy value: There are
 # electromagnetic waves in the environment,
 # and the electromagnetic wave frequency
@@ -69,7 +68,7 @@ DETAILMESSAGE = 0x09       #Underlying parameters of the human state
 last_status = 1
 
 
-def config():
+def read_config():
     try:
         with open("config.yaml", "r") as file:
             config = yaml.safe_load(file)
@@ -84,12 +83,12 @@ def config():
             print("Fehler: 'api_url' fehlt in der Konfiguration.")
 
         if "serial_port" in config:
-            API_URL = config["serial_port"]
+            SERIAL_PORT = config["serial_port"]
         else:
             print("Fehler: 'serial_port' fehlt in der Konfiguration.")
 
         if "baud_rate" in config:
-            API_URL = config["baud_rate"]
+            BAUD_RATE = config["baud_rate"]
         else:
             print("Fehler: 'baud_rate' fehlt in der Konfiguration.")
 
@@ -99,24 +98,25 @@ def config():
         #         print("Fehler: 'listen_port' sollte eine Ganzzahl sein.")
         # else:
         #     print("Fehler: 'listen_port' fehlt in der Konfiguration.")
+
         return config
+    
     except FileNotFoundError:
         print("Die Konfigurationsdatei existiert nicht. Eine Beispielskonfiguration wird erstellt.")
     default_config = {
         "api_url": "localhost",
         "serial_port": "COM10",
         "baud_rate": 115200
-    }
-    return default_config
-    
+    }    
     with open("config.yaml", "w") as file:
         yaml.dump(default_config, file, default_flow_style=False)
+    return default_config
 
 
 def send_to_api(data):
     data = {
-        "areaId": 1,
-        "statusId": 1, # oder 0
+        "areaId": 1, # immer 1
+        "statusId": 1, # 1 oder 2
         "timestamp": int(time.time()) # aktuelle Unix-Zeit
         }
     json_data = json.dumps(data)
@@ -161,47 +161,40 @@ def readData(data):
 
 def read_serial_data(port, baudrate):
     ser = serial.Serial(port, baudrate)
-
     start_sequence = [0x53, 0x59]  # Startsequenz
     end_sequence = [0x54, 0x43]    # Endsequenz
-
     buffer = []  # Puffer für die empfangenen Daten
 
     try:
         while True:
             byte = ser.read(1)  # Ein Byte von der seriellen Schnittstelle lesen
-
             if byte:
                 buffer.append(byte[0])
-
-                # Überprüfen, ob die Startsequenz erreicht wurde
                 #if buffer[-len(start_sequence):] == start_sequence:
                     #print("Startsequenz erkannt")
-
-                # Überprüfen, ob die Endsequenz erreicht wurde
                 if buffer[-len(end_sequence):] == end_sequence:
                     #print("Endsequenz erkannt")
-                    # Hier kannst du mit den empfangenen Daten arbeiten
                     received_data = buffer[len(start_sequence):-len(end_sequence)]
-                    #print("Empfangene Daten:", received_data)
+                    #print("Empfangene Daten:", received_data) 
 
-                    readData(received_data)
-
-                    # Puffer leeren
-                    buffer = []
+                    readData(received_data)                   
+                    buffer = [] # Puffer leeren
 
     except KeyboardInterrupt:
         print("Programm durch Benutzer unterbrochen")
-
     finally:
         ser.close()
 
 if __name__ == "__main__":
-    #config()
+    config = read_config()
 
-    serial_port = "COM10"  # Passe den Port entsprechend deiner Konfiguration an
-    baud_rate = 115200  # Passe die Baudrate entsprechend deiner Konfiguration an
+    API_URL = config["api_url"]
+    SERIAL_PORT = config["serial_port"]
+    BAUD_RATE = config["baud_rate"]
 
-    print(last_status)
+    print(API_URL, SERIAL_PORT, BAUD_RATE)
+
+    serial_port = "COM10"
+    baud_rate = 115200
 
     read_serial_data(serial_port, baud_rate)
