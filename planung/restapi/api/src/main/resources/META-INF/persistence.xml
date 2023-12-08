@@ -10,7 +10,7 @@
         <properties>
             <property name="hibernate.dialect" value="org.sqlite.hibernate.dialect.SQLiteDialect"/>
             <property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
-            <property name="hibernate.connection.url" value="jdbc:sqlite:C:\\Users\\g065715\\Documents\\Schule\\Projekte\\Wecker\\SmartAlarmClock\\planung\\db\\wecker.db"/>
+            <property name="hibernate.connection.url" value="jdbc:sqlite:/home/pi/SmartAlarmClock/planung/db/wecker.db"/>
 
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
