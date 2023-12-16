@@ -1,6 +1,5 @@
 package org.openapitools.persistence.service;
 
-import org.openapitools.model.Area;
 import org.openapitools.model.Status;
 import org.openapitools.persistence.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
