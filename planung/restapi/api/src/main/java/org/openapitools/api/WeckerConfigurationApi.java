@@ -78,8 +78,9 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
+
                     break;
                 }
             }
@@ -125,7 +126,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -165,7 +166,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }, { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 } ]";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -212,7 +213,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -262,7 +263,7 @@ public interface WeckerConfigurationApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

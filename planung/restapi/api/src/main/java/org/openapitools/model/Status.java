@@ -36,6 +36,7 @@ public class Status {
   public static final String FIND_BY_ID = "STATUS.FIND.BY.ID";
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private Long id;
 
