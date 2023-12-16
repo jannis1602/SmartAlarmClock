@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -54,9 +55,12 @@ public class ModelConfiguration {
   private Boolean active;
 
   @Valid
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
-  private List<@Valid Day> days;
+//  @OneToMany(cascade = CascadeType.ALL)
+
+//  @JoinColumn(name = "id")
+  @OneToMany(mappedBy = "id.modelConfiguration", cascade = CascadeType.ALL)
+//  @JsonManagedReference
+  private List<@Valid ModelConfigurationDayZuordnung> days;
 
   public ModelConfiguration id(Long id) {
     this.id = id;
@@ -140,12 +144,12 @@ public class ModelConfiguration {
     this.active = active;
   }
 
-  public ModelConfiguration days(List<@Valid Day> days) {
+  public ModelConfiguration days(List<@Valid ModelConfigurationDayZuordnung> days) {
     this.days = days;
     return this;
   }
 
-  public ModelConfiguration addDaysItem(Day daysItem) {
+  public ModelConfiguration addDaysItem(ModelConfigurationDayZuordnung daysItem) {
     if (this.days == null) {
       this.days = new ArrayList<>();
     }
@@ -160,11 +164,11 @@ public class ModelConfiguration {
   @Valid 
   @Schema(name = "days", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("days")
-  public List<@Valid Day> getDays() {
+  public List<@Valid ModelConfigurationDayZuordnung> getDays() {
     return days;
   }
 
-  public void setDays(List<@Valid Day> days) {
+  public void setDays(List<@Valid ModelConfigurationDayZuordnung> days) {
     this.days = days;
   }
 

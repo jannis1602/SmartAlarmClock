@@ -7,10 +7,14 @@
         <!-- JPA configuration -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.openapitools.model.Area</class>
+        <class>org.openapitools.model.Status</class>
+        <class>org.openapitools.model.PresenceLog</class>
+        <class>org.openapitools.model.ModelConfigurationDayZuordnung</class>
+        <class>org.openapitools.model.ModelConfiguration</class>
         <properties>
             <property name="hibernate.dialect" value="org.sqlite.hibernate.dialect.SQLiteDialect"/>
             <property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
-            <property name="hibernate.connection.url" value="jdbc:sqlite:/home/pi/SmartAlarmClock/planung/db/wecker.db"/>
+            <property name="hibernate.connection.url" value="jdbc:sqlite:/home/julien/Documents/SmartAlarmClock/planung/db/wecker.db"/>
 
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

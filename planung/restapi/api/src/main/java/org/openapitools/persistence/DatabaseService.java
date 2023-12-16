@@ -6,12 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.openapitools.model.Area;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -62,6 +57,18 @@ public class DatabaseService implements AutoCloseable {
             throw new IOException(e);
         }
     }
+    public <T> void remove(List<T> entities) throws IOException{
+        EntityTransaction transaction = startTransaction();
+        try {
+            for(T entity : entities){
+                entityManager.remove(entity);
+            }
+            
+            transaction.commit();
+        } catch (Exception e){
+            throw new IOException(e);
+        }
+    }
 
     public <T, K> T find(Class<T> clazz, K key) throws IOException{
         EntityTransaction transaction = startTransaction();
@@ -77,6 +84,8 @@ public class DatabaseService implements AutoCloseable {
     public <T> TypedQuery<T> query(String queryName, Class<T> resultClass){
         return entityManager.createNamedQuery(queryName, resultClass);
     }
+
+
 
     public void getConnection() {
         try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

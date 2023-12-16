@@ -1,11 +1,13 @@
 package org.openapitools.persistence.service;
 
+import org.openapitools.model.Day;
 import org.openapitools.model.ModelConfiguration;
-import org.openapitools.model.PresenceLog;
+import org.openapitools.model.ModelConfigurationDayZuordnung;
 import org.openapitools.persistence.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.NoResultException;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +22,15 @@ public class WeckerConfigurationApiService {
         return modelConfiguration;
     }
 
-    public ModelConfiguration deleteConfiguration(Long configurationId)  throws IOException {
+    public ModelConfiguration deleteConfiguration(Long configurationId)  throws IOException, NoResultException {
+//        List<ModelConfigurationDayZuordnung> zuordnungs = databaseService.query(ModelConfigurationDayZuordnung.FIND_BY_ALARM, ModelConfigurationDayZuordnung.class)
+//                .setParameter("id", configurationId)
+//                .getResultList();
+//        if(zuordnungs != null && !zuordnungs.isEmpty()){
+//            databaseService.remove(zuordnungs);
+//
+//        }
+
         ModelConfiguration modelConfiguration = getConfigurationById(configurationId);
         databaseService.remove(modelConfiguration);
         return modelConfiguration;
@@ -33,6 +43,7 @@ public class WeckerConfigurationApiService {
 
     public ModelConfiguration getConfigurationById(Long configurationId)  throws IOException {
         return databaseService.query(ModelConfiguration.FIND_BY_ID, ModelConfiguration.class)
+                .setParameter("id", configurationId)
                 .getSingleResult();
     }
 
