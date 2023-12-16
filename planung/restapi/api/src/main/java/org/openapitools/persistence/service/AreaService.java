@@ -13,7 +13,6 @@ import java.util.List;
 
 @Component
 public class AreaService {
-    //todo
     @Autowired
     private DatabaseService databaseService;
 
