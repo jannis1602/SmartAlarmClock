@@ -26,13 +26,19 @@ import javax.annotation.Generated;
 
 @Entity
 @NamedQueries(
-        @NamedQuery(name = Area.FIND_ALL,
-        query = "from Area")
+        {
+              @NamedQuery(name = Area.FIND_ALL,
+                      query = "from Area"),
+
+              @NamedQuery(name = Area.FIND_BY_ID,
+                      query = "from Area where id = :id")
+        }
 )
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class Area {
 
   public static final String FIND_ALL = "Area.findall";
+  public static final String FIND_BY_ID = "Area.find.id";
 
 
   @Id
