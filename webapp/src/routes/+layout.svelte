@@ -11,12 +11,6 @@
 			<li>
 				<a href="/alarms">Alarms</a>
 			</li>
-			<li>
-				<a href="/statistics">Statistics</a>
-			</li>
-			<li>
-				<a href="/settings">Settings</a>
-			</li>
 		</ul>
 	</nav>
 </header>
