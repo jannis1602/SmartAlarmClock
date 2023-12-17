@@ -181,16 +181,12 @@ public class ModelConfiguration {
       return false;
     }
     ModelConfiguration _configuration = (ModelConfiguration) o;
-    return Objects.equals(this.id, _configuration.id) &&
-        Objects.equals(this.alarmDate, _configuration.alarmDate) &&
-        Objects.equals(this.alarmTime, _configuration.alarmTime) &&
-        Objects.equals(this.active, _configuration.active) &&
-        Objects.equals(this.days, _configuration.days);
+    return Objects.equals(this.id, _configuration.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, alarmDate, alarmTime, active, days);
+    return Objects.hash(id);
   }
 
   @Override

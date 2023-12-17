@@ -96,7 +96,9 @@ public class WeckerConfigurationApiController implements WeckerConfigurationApi 
     public ResponseEntity<JSONModelConfiguration> updateConfiguration(Long configurationId, JSONModelConfiguration jsonModelConfiguration) {
         try {
 
-            ModelConfiguration configuration = weckerConfigurationService.updateConfiguration(configurationId, translateJsonDtoToEntity(jsonModelConfiguration));
+            ModelConfiguration configuration = translateJsonDtoToEntity(jsonModelConfiguration);
+            configuration.setId(configurationId);
+            configuration = weckerConfigurationService.updateConfiguration(configurationId, configuration);
             return ResponseEntity.ok(translateEntityToJsonDto(configuration));
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(null);
@@ -130,7 +132,11 @@ public class WeckerConfigurationApiController implements WeckerConfigurationApi 
         configuration.setActive(jsonDTO.getActive());
         configuration.setAlarmDate(jsonDTO.getAlarmDate());
         configuration.setAlarmTime(jsonDTO.getAlarmTime());
+        configuration.setId(jsonDTO.getId());
 
+
+        if (jsonDTO.getDays() == null)
+            return configuration;
         List<ModelConfigurationDayZuordnung> zuordnungs = new ArrayList<>();
         ModelConfigurationDayZuordnung zuordnung;
         for (JSONDay jsonDay : jsonDTO.getDays()) {
