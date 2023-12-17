@@ -89,6 +89,8 @@ public class WeckerConfigurationApiController implements WeckerConfigurationApi 
             return ResponseEntity.ok(translateEntityToJsonDto(configuration));
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(null);
+        } catch (NoResultException e){
+            return ResponseEntity.noContent().build();
         }
     }
 
