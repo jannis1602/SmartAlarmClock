@@ -105,7 +105,7 @@ def read_config():
         print("Die Konfigurationsdatei existiert nicht. Eine Beispielskonfiguration wird erstellt.")
     default_config = {
         "api_url": "localhost",
-        "serial_port": "COM10",
+        "serial_port": "ttyS0",
         "baud_rate": 115200
     }    
     with open("config.yaml", "w") as file:
@@ -113,14 +113,14 @@ def read_config():
     return default_config
 
 
-def send_to_api(data):
+def send_to_api(status):
     data = {
         "areaId": 1, # immer 1
-        "statusId": 1, # 1 oder 2
+        "statusId": status, # 1 oder 2
         "timestamp": int(time.time()) # aktuelle Unix-Zeit
         }
     json_data = json.dumps(data)
-    response = requests.post('http://api-url.com', data=json_data)
+    response = requests.post('http://localhost:8080/api/v1/wecker/sensor/presence/logs', data=json_data)
     print('Status Code:', response.status_code)
     print('Response:', response.text)
 
@@ -154,7 +154,7 @@ def readData(data):
                 status = 2
 
             if(last_status != status): 
-                #send_to_api(status)
+                send_to_api(status)
                 print("change: ",status)
                 last_status = status
 
