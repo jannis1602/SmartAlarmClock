@@ -1,31 +1,32 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+
+import javax.persistence.*;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
  * Day
  */
 
+@Entity
+
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class Day {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column
   private Long id;
 
+  @Column
   private String name;
 
-  private Boolean active;
 
   public Day id(Long id) {
     this.id = id;
@@ -67,25 +68,12 @@ public class Day {
     this.name = name;
   }
 
-  public Day active(Boolean active) {
-    this.active = active;
-    return this;
-  }
 
   /**
    * Get active
    * @return active
   */
-  
-  @Schema(name = "active", example = "true", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("active")
-  public Boolean getActive() {
-    return active;
-  }
 
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -97,13 +85,12 @@ public class Day {
     }
     Day day = (Day) o;
     return Objects.equals(this.id, day.id) &&
-        Objects.equals(this.name, day.name) &&
-        Objects.equals(this.active, day.active);
+        Objects.equals(this.name, day.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, active);
+    return Objects.hash(id, name);
   }
 
   @Override
@@ -112,7 +99,6 @@ public class Day {
     sb.append("class Day {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("}");
     return sb.toString();
   }

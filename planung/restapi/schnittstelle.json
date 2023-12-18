@@ -289,6 +289,28 @@
         }
       }
     },
+    "/wecker/sensor/presence/logs/last": {
+      "get": {
+        "tags": [
+          "WaveSensor"
+        ],
+        "summary": "Get last Sensor presence Log",
+        "description": "Get last Sensor presence Log",
+        "operationId": "getLastPresenceLog",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresenceLog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/wecker/sensor/presence/logs/{logId}": {
       "get": {
         "tags": [

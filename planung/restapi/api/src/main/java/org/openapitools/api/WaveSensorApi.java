@@ -88,6 +88,47 @@ public interface WaveSensorApi {
 
     }
 
+    /**
+     * GET /wecker/sensor/presence/logs/last: Get Last Sensor Presence Log
+     * Get Last Sensor Presence Log
+     *
+     * @return Successful operation (status code 200)
+     *         or Sensor Presence Log not found (status code 404)
+     *         or Validation exception (status code 405)
+     */
+    @Operation(
+            operationId = "getLastPresenceLog",
+            summary = "Get Last Sensor Presence Log",
+            description = "Get Last Sensor Presence Log",
+            tags = { "WaveSensor" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation", content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = PresenceLog.class))
+                    }),
+                    @ApiResponse(responseCode = "404", description = "Sensor Presence Log not found"),
+                    @ApiResponse(responseCode = "405", description = "Validation exception")
+            }
+    )
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/wecker/sensor/presence/logs/last",
+            produces = { "application/json" }
+    )
+    default ResponseEntity<PresenceLog> getLastPresenceLog(
+
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"areaId\" : 10, \"statusId\" : 10, \"id\" : 10, \"timestamp\" : 10 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
 
     /**
      * GET /wecker/sensor/presence/logs/{logId} : Get Sensor Presence Log by ID

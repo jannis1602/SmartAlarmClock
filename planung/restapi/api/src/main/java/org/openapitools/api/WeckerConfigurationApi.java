@@ -5,7 +5,7 @@
  */
 package org.openapitools.api;
 
-import org.openapitools.model.ModelConfiguration;
+
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import org.openapitools.json.JSONModelConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,7 @@ public interface WeckerConfigurationApi {
         tags = { "Wecker Configuration" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelConfiguration.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = JSONModelConfiguration.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Configuration not found"),
@@ -72,14 +73,15 @@ public interface WeckerConfigurationApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<ModelConfiguration> addConfiguration(
-        @Parameter(name = "ModelConfiguration", description = "Add Configuration") @Valid @RequestBody(required = false) ModelConfiguration modelConfiguration
+    default ResponseEntity<JSONModelConfiguration> addConfiguration(
+        @Parameter(name = "ModelConfiguration", description = "Add Configuration") @Valid @RequestBody(required = false) JSONModelConfiguration modelConfiguration
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
+
                     break;
                 }
             }
@@ -106,7 +108,7 @@ public interface WeckerConfigurationApi {
         tags = { "Wecker Configuration" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelConfiguration.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = JSONModelConfiguration.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Configuration not found"),
@@ -119,13 +121,13 @@ public interface WeckerConfigurationApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<ModelConfiguration> deleteConfiguration(
+    default ResponseEntity<JSONModelConfiguration> deleteConfiguration(
         @Parameter(name = "configurationId", description = "ID of Configuration", required = true, in = ParameterIn.PATH) @PathVariable("configurationId") Long configurationId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -149,7 +151,7 @@ public interface WeckerConfigurationApi {
         tags = { "Wecker Configuration" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ModelConfiguration.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = JSONModelConfiguration.class)))
             })
         }
     )
@@ -159,13 +161,13 @@ public interface WeckerConfigurationApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<List<ModelConfiguration>> getAllConfigurations(
+    default ResponseEntity<List<JSONModelConfiguration>> getAllConfigurations(
         
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }, { \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 } ]";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -193,7 +195,7 @@ public interface WeckerConfigurationApi {
         tags = { "Wecker Configuration" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelConfiguration.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = JSONModelConfiguration.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Configuration not found"),
@@ -206,13 +208,13 @@ public interface WeckerConfigurationApi {
         produces = { "application/json" }
     )
     
-    default ResponseEntity<ModelConfiguration> getConfigurations(
+    default ResponseEntity<JSONModelConfiguration> getConfigurations(
         @Parameter(name = "configurationId", description = "ID of Configuration", required = true, in = ParameterIn.PATH) @PathVariable("configurationId") Long configurationId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -241,7 +243,7 @@ public interface WeckerConfigurationApi {
         tags = { "Wecker Configuration" },
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ModelConfiguration.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = JSONModelConfiguration.class))
             }),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
             @ApiResponse(responseCode = "404", description = "Configuration not found"),
@@ -255,14 +257,14 @@ public interface WeckerConfigurationApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<ModelConfiguration> updateConfiguration(
+    default ResponseEntity<JSONModelConfiguration> updateConfiguration(
         @Parameter(name = "configurationId", description = "ID of Configuration", required = true, in = ParameterIn.PATH) @PathVariable("configurationId") Long configurationId,
-        @Parameter(name = "ModelConfiguration", description = "Update an existent Configuration") @Valid @RequestBody(required = false) ModelConfiguration modelConfiguration
+        @Parameter(name = "ModelConfiguration", description = "Update an existent Configuration") @Valid @RequestBody(required = false) JSONModelConfiguration modelConfiguration
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"maxDuration\" : 123, \"timestamp\" : 123 }";
+                    String exampleString = "{ \"active\" : true, \"days\" : [ { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 }, { \"name\" : \"Donnerstag\", \"active\" : true, \"id\" : 123 } ], \"id\" : 123, \"alarmDate\" : \"2023-12-23\", \"alarmTime\" : \"09:35\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

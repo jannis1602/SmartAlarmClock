@@ -1,32 +1,44 @@
 package org.openapitools.model;
 
-import java.net.URI;
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
-import java.util.*;
 import javax.annotation.Generated;
+import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * PresenceLog
  */
+@Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = PresenceLog.FIND_ALL,
+                        query = "from PresenceLog "),
 
+                @NamedQuery(name = PresenceLog.FIND_BY_ID,
+                        query = "from PresenceLog where id = :id")
+        }
+)
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class PresenceLog {
 
+  public static final String FIND_ALL = "PRESENCELOG.FIND.ALL";
+  public static final String FIND_BY_ID = "PRESENCELOG.FIND.BY.ID";
+
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column
   private Long id;
 
+  @Column
   private Long areaId;
 
+  @Column
   private Long statusId;
 
+  @Column
   private Long timestamp;
 
   public PresenceLog id(Long id) {
