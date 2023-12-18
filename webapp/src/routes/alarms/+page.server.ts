@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const res = await fetch(`http://127.0.0.1/8080/api/v1/wecker/configurations/`);
+	const res = await fetch(`http://127.0.0.1:8080/api/v1/wecker/configurations/`);
 	const alarms = res.json();
 
 	return { alarms };
