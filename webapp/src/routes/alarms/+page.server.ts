@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const res = await fetch(`http://192.168.178.126:8080/api/v1/wecker/configurations/`);
+	const res = await fetch(`localhost:8080/api/v1/wecker/configurations/`);
 	const alarms = res.json();
 
 	return { alarms };
@@ -26,7 +26,7 @@ export const actions: Actions = {
 				'Sonntag'
 			];
 
-			const response = await fetch(`http://192.168.178.126:8080/api/v1/wecker/configurations/`, {
+			const response = await fetch(`localhost:8080/api/v1/wecker/configurations/`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const actions: Actions = {
 			const alarmIsActive = data.get('alarmIsActive') === 'true';
 
 			const response = await fetch(
-				`http://192.168.178.126:8080/api/v1/wecker/configurations/${alarmId}`,
+				`localhost:8080/api/v1/wecker/configurations/${alarmId}`,
 				{
 					method: 'PUT',
 					headers: {
@@ -82,7 +82,7 @@ export const actions: Actions = {
 
 		const alarmId = data.get('alarmId');
 
-		await fetch(`http://192.168.178.126:8080/api/v1/wecker/configurations/${alarmId}`, {
+		await fetch(`localhost:8080/api/v1/wecker/configurations/${alarmId}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export const actions: Actions = {
 			];
 
 			const response = await fetch(
-				`http://192.168.178.126:8080/api/v1/wecker/configurations/${alarmId}`,
+				`localhost:8080/api/v1/wecker/configurations/${alarmId}`,
 				{
 					method: 'PUT',
 					headers: {
