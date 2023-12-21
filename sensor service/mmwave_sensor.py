@@ -104,7 +104,7 @@ def read_config():
         print("Die Konfigurationsdatei existiert nicht. Eine Beispielskonfiguration wird erstellt.")
     default_config = {
         "api_url": "localhost",
-        "serial_port": "dev/ttyS0",
+        "serial_port": "/dev/ttyS0",
         "baud_rate": 115200,
         "motion_trigger_value": 10
     }    
