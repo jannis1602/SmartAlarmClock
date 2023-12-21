@@ -67,7 +67,6 @@ DETAILMESSAGE = 0x09       #Underlying parameters of the human state
 
 last_status = 1
 
-
 def read_config():
     try:
         with open("config.yaml", "r") as file:
@@ -105,8 +104,9 @@ def read_config():
         print("Die Konfigurationsdatei existiert nicht. Eine Beispielskonfiguration wird erstellt.")
     default_config = {
         "api_url": "localhost",
-        "serial_port": "ttyS0",
-        "baud_rate": 115200
+        "serial_port": "dev/ttyS0",
+        "baud_rate": 115200,
+        "motion_trigger_value": 10
     }    
     with open("config.yaml", "w") as file:
         yaml.dump(default_config, file, default_flow_style=False)
@@ -126,7 +126,7 @@ def send_to_api(status):
 
 
 
-def readData(data):
+def readData(data, motion_trigger_value):
     global last_status
     control = data[0]
     command = data[1]
@@ -150,7 +150,7 @@ def readData(data):
             # print("motion_speed =", motion_speed)
 
             status = 1
-            if(motion_energy_value > 10):
+            if(motion_energy_value > motion_trigger_value):
                 status = 2
 
             if(last_status != status): 
@@ -159,7 +159,7 @@ def readData(data):
                 last_status = status
 
 
-def read_serial_data(port, baudrate):
+def read_serial_data(port, baudrate, motion_trigger_value):
     ser = serial.Serial(port, baudrate)
     start_sequence = [0x53, 0x59]  # Startsequenz
     end_sequence = [0x54, 0x43]    # Endsequenz
@@ -177,7 +177,7 @@ def read_serial_data(port, baudrate):
                     received_data = buffer[len(start_sequence):-len(end_sequence)]
                     #print("Empfangene Daten:", received_data) 
 
-                    readData(received_data)                   
+                    readData(received_data, motion_trigger_value)                   
                     buffer = [] # Puffer leeren
 
     except KeyboardInterrupt:
@@ -191,10 +191,13 @@ if __name__ == "__main__":
     API_URL = config["api_url"]
     SERIAL_PORT = config["serial_port"]
     BAUD_RATE = config["baud_rate"]
+    MOTION_TRIGGER_VALUE = config["motion_trigger_value"]
 
     print(API_URL, SERIAL_PORT, BAUD_RATE)
 
-    serial_port = "COM10"
-    baud_rate = 115200
+    #serial_port = "COM10"
+    #baud_rate = 115200
 
-    read_serial_data(serial_port, baud_rate)
+    read_serial_data(SERIAL_PORT, BAUD_RATE, MOTION_TRIGGER_VALUE)
+
+
