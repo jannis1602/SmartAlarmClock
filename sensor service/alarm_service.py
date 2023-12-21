@@ -23,12 +23,12 @@ def get_presence_json():
 
 def get_presence():
     response = requests.get(REST_API_PRESENCE_URL)
-    return response.json()["status"]
+    return response.json()["active"]
 
 def check_alarm_should_play(alarm):
     alarm1 = get_alarm_by_id(alarm["id"])
     if len(alarm1) < 1: return False
-    return alarm1["status"] == True
+    return alarm1["active"] == True
 
 def play_alarm(alarm):
     print("start alarm")
@@ -64,12 +64,13 @@ def find_next_active_alarm(json_string):
                 # Finde den nächsten aktiven Wochentag
                 for day in alarm["days"]:
                     if day["active"]:
-                        alarm_datetime += timedelta(days=(day["id"] - now.weekday() + 7) % 7)
+                        alarm_datetime += timedelta(days=(day["id"] - (now.weekday()+1) + 7) % 7)
             else:
                 # Wenn weder Datum noch Wochentag gegeben sind (um jeden Tag zu klingeln)
                 alarm_datetime = datetime.combine(now.date(), datetime.strptime(alarm["alarmTime"], "%H:%M").time())
 
             if alarm_datetime > now:
+                print(alarm_datetime, ">",now)
                 time_difference = alarm_datetime - now
 
                 if time_difference.total_seconds() < min_time_difference:
