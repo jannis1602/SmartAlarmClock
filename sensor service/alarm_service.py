@@ -27,6 +27,7 @@ def get_presence():
 
 def check_alarm_should_play(alarm):
     alarm1 = get_alarm_by_id(alarm["id"])
+    if len(alarm1) < 1: return False
     return alarm1["status"] == True
 
 def play_alarm(alarm):
