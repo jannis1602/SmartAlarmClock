@@ -120,11 +120,10 @@ def send_to_api(status):
         "timestamp": int(time.time()) # aktuelle Unix-Zeit
         }
     json_data = json.dumps(data)
-    response = requests.post('http://localhost:8080/api/v1/wecker/sensor/presence/logs', data=json_data)
+    headers = {'Content-Type': 'application/json'}  
+    response = requests.post('http://localhost:8080/api/v1/wecker/sensor/presence/logs', data=json_data, headers=headers)
     print('Status Code:', response.status_code)
     print('Response:', response.text)
-
-
 
 def readData(data, motion_trigger_value):
     global last_status
@@ -197,6 +196,8 @@ if __name__ == "__main__":
 
     #serial_port = "COM10"
     #baud_rate = 115200
+
+    send_to_api(2)
 
     read_serial_data(SERIAL_PORT, BAUD_RATE, MOTION_TRIGGER_VALUE)
 

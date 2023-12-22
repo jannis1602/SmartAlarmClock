@@ -5,8 +5,8 @@ from pygame import mixer
 import json
 from datetime import datetime, timedelta
 
-REST_API_ALARM_URL = "http://192.168.217.185:8080/api/v1/wecker/configurations/"  # Ihre REST-API-URL hier einfügen
-REST_API_PRESENCE_URL = "http://192.168.217.185:8080/api/v1/wecker/sensor/presence/logs/last"  # Ihre REST-API-URL hier einfügen
+REST_API_ALARM_URL = "http://localhost:8080/api/v1/wecker/configurations/"  # Ihre REST-API-URL hier einfügen
+REST_API_PRESENCE_URL = "http://localhost:8080/api/v1/wecker/sensor/presence/logs/last"  # Ihre REST-API-URL hier einfügen
 MP3_FILE_PATH = "alarm2.mp3"  # Pfad zur MP3-Datei hier einfügen
 
 def get_next_alarm():
@@ -23,7 +23,8 @@ def get_presence_json():
 
 def get_presence():
     response = requests.get(REST_API_PRESENCE_URL)
-    return response.json()["active"]
+    print("presence:",response.json())
+    return response.json()["status"]
 
 def check_alarm_should_play(alarm):
     alarm1 = get_alarm_by_id(alarm["id"])
@@ -50,32 +51,37 @@ def play_alarm(alarm):
 def find_next_active_alarm(json_string):
     alarms = json_string #json.loads(json_string)
 
-    now = datetime.now()
+    now = datetime.now().replace(second=0, microsecond=0)
     next_alarm = None
     min_time_difference = float('1e100')
 
     for alarm in alarms:
         if alarm["active"]:
             if "alarmDate" in alarm and alarm["alarmDate"]:
-                alarm_datetime = datetime.strptime(alarm["alarmDate"] + " " + alarm["alarmTime"], "%Y-%m-%d %H:%M")
+                alarm_datetime = datetime.strptime(alarm["alarmDate"] + " " + alarm["alarmTime"], "%Y-%m-%d %H:%M").replace(second=0, microsecond=0)
             elif "days" in alarm and any(day["active"] for day in alarm["days"]):
                 # Wenn kein Datum, aber mindestens ein aktiver Wochentag
-                alarm_datetime = datetime.combine(now.date(), datetime.strptime(alarm["alarmTime"], "%H:%M").time())
+                alarm_datetime = datetime.combine(now.date(), datetime.strptime(alarm["alarmTime"], "%H:%M").time()).replace(second=0, microsecond=0)
                 # Finde den nächsten aktiven Wochentag
                 for day in alarm["days"]:
                     if day["active"]:
-                        alarm_datetime += timedelta(days=(day["id"] - (now.weekday()+1) + 7) % 7)
+                        days_until_next_day = (day["id"] - (now.weekday()+1) + 7) % 7
+                        alarm_datetime += timedelta(days=days_until_next_day)
             else:
                 # Wenn weder Datum noch Wochentag gegeben sind (um jeden Tag zu klingeln)
-                alarm_datetime = datetime.combine(now.date(), datetime.strptime(alarm["alarmTime"], "%H:%M").time())
+                alarm_datetime = datetime.combine(now.date(), datetime.strptime(alarm["alarmTime"], "%H:%M").time()).replace(second=0, microsecond=0)
 
-            if alarm_datetime > now:
+            if alarm_datetime >= now:
                 print(alarm_datetime, ">",now)
                 time_difference = alarm_datetime - now
 
                 if time_difference.total_seconds() < min_time_difference:
                     next_alarm = alarm
                     min_time_difference = time_difference.total_seconds()
+
+                    # Füge das aktuelle Datum zum Alarm hinzu, wenn kein Datum vorhanden ist
+                    if "alarmDate" not in next_alarm or not next_alarm["alarmDate"]:
+                        next_alarm["alarmDate"] = now.strftime("%Y-%m-%d")
 
     return next_alarm
 
@@ -91,6 +97,10 @@ def main():
         alarm_id = alarm["id"]
         alarm_time = alarm["alarmTime"]
         alarm_status = alarm["active"]
+
+        alarm_datetime = datetime.strptime(alarm["alarmDate"] + " " + alarm["alarmTime"], "%Y-%m-%d %H:%M").replace(second=0, microsecond=0)
+        time_until_alarm = alarm_datetime - datetime.now().replace(second=0, microsecond=0)
+        print(time_until_alarm)
 
         if alarm_time == current_time and alarm_status == True:
             if get_presence():
