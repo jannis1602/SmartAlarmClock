@@ -6,14 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,17 +21,23 @@ import javax.annotation.Generated;
 
 @Entity
 @NamedQueries(
-        @NamedQuery(name = Area.FIND_ALL,
-        query = "from Area")
+        {
+              @NamedQuery(name = Area.FIND_ALL,
+                      query = "from Area"),
+
+              @NamedQuery(name = Area.FIND_BY_ID,
+                      query = "from Area where id = :id")
+        }
 )
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-19T14:12:38.522563+01:00[Europe/Berlin]")
 public class Area {
 
   public static final String FIND_ALL = "Area.findall";
+  public static final String FIND_BY_ID = "Area.find.id";
 
 
   @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private Long id;
 

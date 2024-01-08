@@ -10,8 +10,10 @@ import java.util.List;
 
 @Component
 public class StatusApiService {
+
     @Autowired
     private DatabaseService databaseService;
+
     public Status persistStatus(Status status) throws IOException {
         databaseService.persist(status);
         return status;
@@ -23,7 +25,9 @@ public class StatusApiService {
     }
 
     public Status getStatusById(Long statusId) throws IOException{
-        return databaseService.find(Status.class, statusId);
+        return databaseService.query(Status.FIND_BY_ID, Status.class)
+                .setParameter("id", statusId)
+                .getSingleResult();
     }
 
     public Status updateStatus(Long statusId, Status status) throws IOException{
