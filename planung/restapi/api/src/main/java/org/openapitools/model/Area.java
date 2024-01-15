@@ -123,4 +123,3 @@ public class Area {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

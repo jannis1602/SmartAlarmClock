@@ -34,6 +34,16 @@
         "summary": "Get all Wecker Configurations",
         "description": "Get all Wecker Configurations",
         "operationId": "getAllConfigurations",
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "description": "Active configuration",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -233,6 +243,40 @@
         "summary": "Get all Sensor presence Logs",
         "description": "Get all Sensor presence Logs",
         "operationId": "getPresenceLogs",
+        "parameters": [
+          {
+            "name": "area",
+            "in": "query",
+            "description": "Area Id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status Id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Timestamp has to be before the given value",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Timestamp has to be after given value",
+            "schema": {
+              "type": "integer"
+            }
+          }
+          ],
         "responses": {
           "200": {
             "description": "Successful operation",

@@ -39,6 +39,8 @@ public class WaveSensorApiController implements WaveSensorApi {
     public ResponseEntity<PresenceLog> addPresenceLog(PresenceLog presenceLog) {
         try {
             PresenceLog persistedPresenceLog = waveSensorService.persistPresenceLog(presenceLog);
+
+            persistedPresenceLog.setId(presenceLog.getId());
             return ResponseEntity.ok(persistedPresenceLog);
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(null);
