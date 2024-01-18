@@ -184,6 +184,33 @@ def read_serial_data(port, baudrate, motion_trigger_value):
     finally:
         ser.close()
 
+def readDataOnce():
+    config = read_config()
+
+    API_URL = config["api_url"]
+    SERIAL_PORT = config["serial_port"]
+    BAUD_RATE = config["baud_rate"]
+    MOTION_TRIGGER_VALUE = config["motion_trigger_value"]
+    read_serial_data(SERIAL_PORT, BAUD_RATE, MOTION_TRIGGER_VALUE)
+
+    ser = serial.Serial(SERIAL_PORT, BAUD_RATE)
+    start_sequence = [0x53, 0x59]  # Startsequenz
+    end_sequence = [0x54, 0x43]    # Endsequenz
+    buffer = []  # Puffer für die empfangenen Daten
+
+    byte = ser.read(1)  # Ein Byte von der seriellen Schnittstelle lesen
+    if byte:
+        buffer.append(byte[0])
+        # if buffer[-len(start_sequence):] == start_sequence:
+        # print("Startsequenz erkannt")
+        if buffer[-len(end_sequence):] == end_sequence:
+            # print("Endsequenz erkannt")
+            received_data = buffer[len(start_sequence):-len(end_sequence)]
+            # print("Empfangene Daten:", received_data)
+
+            readData(received_data, MOTION_TRIGGER_VALUE)
+            buffer = []  # Puffer leeren
+
 if __name__ == "__main__":
     config = read_config()
 

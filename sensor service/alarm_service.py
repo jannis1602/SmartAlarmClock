@@ -31,6 +31,16 @@ def check_alarm_should_play(alarm):
     if len(alarm1) < 1: return False
     return alarm1["active"] == True
 
+
+def stopAlarm():
+    mixer.music.stop()
+def playAlarm():
+    print("start alarm")
+    mixer.init()
+    mixer.music.load(MP3_FILE_PATH)
+    mixer.music.play()
+
+
 def play_alarm(alarm):
     print("start alarm")
     mixer.init()
@@ -84,6 +94,29 @@ def find_next_active_alarm(json_string):
                         next_alarm["alarmDate"] = now.strftime("%Y-%m-%d")
 
     return next_alarm
+
+def getAllAlarms():
+    return requests.get(REST_API_ALARM_URL)
+
+def shouldRing(alarm):
+    current_time = time.strftime("%H:%M")
+    print(current_time)
+    print("NEXT ALARM:", alarm)
+
+    alarm_id = alarm["id"]
+    alarm_time = alarm["alarmTime"]
+    alarm_status = alarm["active"]
+
+    alarm_datetime = datetime.strptime(alarm["alarmDate"] + " " + alarm["alarmTime"], "%Y-%m-%d %H:%M").replace(
+        second=0, microsecond=0)
+    time_until_alarm = alarm_datetime - datetime.now().replace(second=0, microsecond=0)
+    print(time_until_alarm)
+
+    if alarm_time == current_time and alarm_status == True:
+        if get_presence():
+            return True
+
+    return False
 
 def main():
     while True:
